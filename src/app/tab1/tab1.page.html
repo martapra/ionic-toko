@@ -1,17 +1,94 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Header -->
+  <ion-card id="header" class="ion-no-margin">
+    <ion-card-header>
+      <ion-item lines="none" class="ion-no-padding ion-activatable ripple-parent" (click)="goProfile()">
+        <ion-avatar slot="end">
+          <img [src]="user.foto ? user.foto : 'assets/images/no-image.jpg'" />
+        </ion-avatar>
+        <ion-label>
+          {{ user.name }}
+          <p>{{ user.role }}</p>
+        </ion-label>
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      <h1>The Best Computer And Accessories Computer</h1>
+    </ion-card-content>
+    <!-- Rounded Div -->
+    <div class="shadow"></div>
+    <!-- End Rounded Div -->
+  </ion-card>
+  <!-- End Header -->
+  <!-- Icon Category -->
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="4">
+        <div class="cat-item ion-activatable ripple-parent" (click)="goProduct('Desktop')">
+          <img src="assets/images/desktop.png" />
+          <p>Desktop</p>
+          <ion-ripple-effect type="bounded"></ion-ripple-effect>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="cat-item ion-activatable ripple-parent" (click)="goProduct('Laptop')">
+          <img src="assets/images/laptop.png" />
+          <p>Laptop</p>
+          <ion-ripple-effect type="bounded"></ion-ripple-effect>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="cat-item ion-activatable ripple-parent" (click)="goProduct('Game Hardware')">
+          <img src="assets/images/game hardware.png" />
+          <p>Game Hardware</p>
+          <ion-ripple-effect type="bounded"></ion-ripple-effect>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- Icon Category -->
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- List Product Skelaton -->
+  <ion-list *ngIf="!products">
+    <ion-list-header>
+      <ion-label><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></ion-label>
+      <ion-button><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></ion-button>
+    </ion-list-header>
+    <ion-item lines="none" *ngFor="let s of [1,2,3,4,5]">
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animate></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <p><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></p>
+        <h2><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></h2>
+        <p class="price"><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <!-- End List product Skelaton -->
+
+  <!-- List product Favorite -->
+  <ion-list id="product-fav" *ngIf="products">
+    <!-- Header List -->
+    <ion-list-header>
+      <ion-label>PRODUCT FAVORIT</ion-label>
+      <ion-button [routerLink]="['/tabs/tab2']" routerLinkActive="router-link-active">See All</ion-button>
+    </ion-list-header>
+    <!-- End Header List -->
+    <!-- List product -->
+    <ion-item class="ion-activatable ripple-parent" lines="none" *ngFor="let mn of products" (click)="getDetailProduct(mn)">
+      <ion-thumbnail slot="start">
+        <img src="{{ mn.foto }}" />
+      </ion-thumbnail>
+      <ion-label>
+        <p>{{ mn.jenis }}</p>
+        <h2>{{ mn.nm_product }}</h2>
+        <p class="price">Rp {{ mn.harga | number }} ,-</p>
+      </ion-label>
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    </ion-item>
+    <!-- End List product -->
+  </ion-list>
+  <!-- End List product Favorite -->
 </ion-content>

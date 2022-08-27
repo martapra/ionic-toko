@@ -1,0 +1,27 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="thumb ion-no-margin">
+    <ion-card-content>
+      <img src="{{ products.foto }}" alt="">
+      <ion-chip [color]="products.stok=='available' ? 'success' : 'danger'" mode="ios" outline="true">
+        <ion-icon [name]="products.stok=='available' ? 'checkmark-circle' : 'close-circle'"></ion-icon>
+        <ion-label>{{ products.stok }}</ion-label>
+      </ion-chip>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="desc">
+    <ion-card-content>
+      <ion-badge color="warning" mode="ios">{{ products.kategori }}</ion-badge>
+      <h1>{{ products.nm_product }}</h1>
+      <h3>Rp {{ products.harga | number }}</h3>
+      <p>{{ products.ket }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

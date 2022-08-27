@@ -1,0 +1,86 @@
+ion-toolbar{
+    --background: #5d93d2;
+    border-radius: 0 0 25px 25px;
+
+    ion-title{
+        text-align: center;
+        font-weight: 600;
+        font-size: 19px;
+    }
+
+    ion-buttons{
+        position: fixed;
+    }
+}
+
+ion-content{
+    .conversation{
+        background: #fff;
+        height: 55%;
+        width: 80%;
+        margin-top: 5px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        .chat-section{
+            height: 100%;
+            overflow: scroll;
+            .chat{
+                display: flex;
+                flex-direction: column;
+                .message{
+                    padding-top: 5px;
+                    padding-right: 90px;
+                    display: flex;
+                    flex-direction: column;
+                    .message{
+                        border-radius: 18px;
+                        padding: 18px 20px;
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+                        font-size: 0.9rem;
+                    }
+                }
+                .your{
+                    align-items: flex-start;
+                    span{
+                        font-size: 0.7rem;
+                        color: #fff;
+                        margin-right: 70%;
+                        padding-bottom: 5px;
+                        padding-top: 5px;
+                    }
+                    .message{
+                        background: #5d93d2;
+                        position: relative;
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+        .message-input{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            bottom: 20px;
+            width: 90vw;
+            left: 50%;
+            margin-left: -45vw;
+            ion-input{
+                border: 1px solid #5d93d2;
+                background: #5d93d2;
+                border-radius: 20px;
+                height: 48px;
+                --padding-start: 20px;
+            }
+            .send-button{
+                margin-left: 20px;
+                background: #5d93d2;
+                padding: 12px 12px 9px 15px;
+                border-radius: 58%;
+                color: #fff;
+                font-size: 1.31rem;
+            }
+        }
+    }
+}

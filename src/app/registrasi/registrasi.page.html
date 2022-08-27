@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>REGISTRASI</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button  text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="reg">
+    <div class="logo">
+        <img src="assets/images/logo.png" alt="">
+    </div>
+    <div class="form">
+        <ion-item lines="none">
+          <ion-input [(ngModel)]="reg.name" type="text" placeholder="Name"></ion-input>
+        </ion-item>      
+        <ion-item lines="none">
+            <ion-input [(ngModel)]="reg.email" type="text" placeholder="Email"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-input [(ngModel)]="reg.password" type="password" placeholder="Password"></ion-input>
+        </ion-item>
+        <ion-button (click)="registrasi()" expand="block" shape="round" color="secondary">
+            Sign Up
+        </ion-button>
+    </div>
+</div>
+</ion-content>

@@ -1,17 +1,55 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+  <ion-toolbar color="secondary">
+  <ion-title>
+    Product
+  </ion-title>
+</ion-toolbar>
 </ion-header>
-
+  
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- searchbar -->
+    <ion-searchbar placeholder="Search ..." [(ngModel)]="search" 
+    [debounce]="250" showCancelButton="never"></ion-searchbar>
+    <!-- end searchbar -->
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <!-- skeleton list product -->
+    <ion-list *ngIf="!products">
+      <ion-list-header>
+        <ion-label><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></ion-label>
+      </ion-list-header>
+      <ion-item lines="none" *ngFor="let s of [1,2,3,4,5,6]">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+          <h2><ion-skeleton-text animated style="width: 40%"></ion-skeleton-text></h2>
+          <p class="price"><ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>-</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <!-- end skeleton list product -->
+
+    <!-- list product -->
+    <ion-list *ngIf="products">
+      <ion-list-header>
+        <ion-label>CHOOSE YOUR PRODUCT</ion-label>
+      </ion-list-header>
+      <ion-item class="ion-activatable ripple-parent"  *ngFor="let mn of products | filter:search" lines="none">
+        <ion-thumbnail slot="start" (click)="getDetailProduct(mn)"> 
+          <img src="{{ mn.foto }}"/>
+        </ion-thumbnail>
+        <ion-label (click)="getDetailProduct(mn)">
+          <p>{{ mn.kategori }}</p>
+          <h2>{{ mn.nm_product }}</h2>
+          <p class="price">Rp {{ mn.harga | number }} ,-</p>
+        </ion-label>
+        <ion-icon slot="end" [name]="mn.fav == 1 ? 'heart' : 'heart-outline'" [color]="mn.fav == 1 ? 'danger' : 'dark'" (click)="setFav(mn)"></ion-icon>        
+         <ion-ripple-effect type="bounded"></ion-ripple-effect>
+      </ion-item>
+    </ion-list>
+    <!-- end list product -->
 </ion-content>

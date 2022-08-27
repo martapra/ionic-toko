@@ -1,0 +1,19 @@
+//list
+ion-list {
+    ion-list-header {
+        ion-label {
+            color: aqua;
+            font-size: 16px;
+        }
+        
+        ion-button {
+            color: aquamarine;
+        }
+    }
+
+    ion-item {
+        .price {
+            color: rgb(49, 59, 201);
+        }
+    }
+}
